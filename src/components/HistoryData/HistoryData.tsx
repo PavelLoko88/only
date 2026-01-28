@@ -1,18 +1,42 @@
+import { useEffect, useState } from "react";
 import styles from "./HistoryData.module.scss";
 import cn from "classnames";
-export const HistoryData = () => {
-  const numberOfPoints = 3; // Количество точек
+import { DataTitle } from "../DataTitle/DataTitle";
 
-  const radius = 100; // Радиус окружности (в px)
-  const center = radius; // Центр окружности (по X и Y)
-  const size = radius * 2; // Размер блока, равен диаметру
+interface Point {
+  x: number;
+  y: number;
+}
 
-  const points = Array.from({ length: numberOfPoints }).map((_, index) => {
-    const angle = ((2 * Math.PI) / numberOfPoints) * index; // угол точки
-    const x = center + radius * Math.cos(angle) - 5; // смещение по X (учитываем размер точки)
-    const y = center + radius * Math.sin(angle) - 5; // смещение по Y
-    return { x, y };
-  });
+export const HistoryData: React.FC = () => {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [activeDot, setActiveDot] = useState<number>(0);
+  const [rotate, setRotate] = useState<number>(65);
+
+  const rotateDefault: number = 65;
+  const numberOfPoints: number = 10;
+  const radius: number = 265;
+  const center: number = radius;
+  const size: number = radius * 2;
+  const points: Point[] = Array.from({ length: numberOfPoints }).map(
+    (_, index) => {
+      const angle = ((2 * Math.PI) / numberOfPoints) * index;
+      const x = center + radius * Math.cos(angle);
+      const y = center + radius * Math.sin(angle);
+      return { x, y };
+    },
+  );
+
+  useEffect(() => {
+    if (activeDot === 0) {
+      setRotate(65);
+    } else {
+      const newRotate2: number =
+        rotateDefault + (360 / numberOfPoints) * activeDot;
+      setRotate(newRotate2);
+    }
+  }, [activeDot]);
+
   return (
     <div className={styles.historyBlock}>
       <div className={styles.historyBlockHeader}>
@@ -23,48 +47,46 @@ export const HistoryData = () => {
       </div>
 
       <div className={styles.historyBlockData}>
-        <h3
-          className={cn(
-            styles.historyBlockDataTitle,
-            styles.historyBlockDataTitleLeft,
-          )}
-        >
-          2015
-        </h3>
-        <h3
-          className={cn(
-            styles.historyBlockDataTitle,
-            styles.historyBlockDataTitleRight,
-          )}
-        >
-          2022
-        </h3>
-      </div>
+        <div className={styles.historyBlockDataLine}></div>
 
-      <div
-        style={{
-          position: "relative",
-          width: size,
-          height: size,
-          borderRadius: "50%",
-          border: "2px solid black",
-          boxSizing: "border-box",
-        }}
-      >
-        {points.map((point, index) => (
-          <div
-            key={index}
-            style={{
-              position: "absolute",
-              top: point.y,
-              left: point.x,
-              width: 10,
-              height: 10,
-              borderRadius: "50%",
-              backgroundColor: "red",
-            }}
-          />
-        ))}
+        
+        <DataTitle activeDot={activeDot}/>
+
+        <div
+          className={styles.circle}
+          style={{
+            width: size,
+            height: size,
+
+            transform: `rotate(-${rotate}deg)`,
+          }}
+        >
+          {points.map((point, index) => (
+            <div
+              key={index}
+              className={cn(
+                styles.circleDot,
+                activeDot === index && styles.circleDotActive,
+              )}
+              style={{
+                top: point.y,
+                left: point.x,
+                transformOrigin: "center",
+                cursor: "pointer",
+                width: hoveredIndex === index ? "56px" : "10px",
+                height: hoveredIndex === index ? "56px" : "10px",
+                transform: `translate(-50%, -50%) rotate(${rotate}deg)`,
+              }}
+              onMouseEnter={() => {
+                setHoveredIndex(index);
+              }}
+              onMouseLeave={() => setHoveredIndex(null)}
+              onClick={() => setActiveDot(index)}
+            >
+              <p className={styles.circleDotText}>{index + 1}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
