@@ -4,41 +4,81 @@ import cn from "classnames";
 
 interface DataTitleI {
   activeDot: number;
+  startData: number;
+  endData: number;
+  text: string | undefined;
 }
 
 export const DataTitle: React.FC<DataTitleI> = (props) => {
-  const { activeDot } = props;
-  const [value, setValue] = useState(1927);
-  const targetValue = 1955;
-  const animationRef = useRef<number | null>(null);
+  const { startData, endData } = props;
+  // ЛЕВАЯ ДАТА
+  const [valueFirst, setValueFirst] = useState<number>(1900);
+  const newFirstValue = startData;
+  // ПРАВАЯ
+  const [valueSecond, setValueSecond] = useState<number>(1900);
+  const newSecondValue = endData;
 
-  const animateNumber = (start: number, end: number, duration: number) => {
+  const animationRefFirst = useRef<number | null>(null);
+  const animationRefSecond = useRef<number | null>(null);
+
+  const animateNumber = (
+    start: number,
+    end: number,
+    duration: number,
+    setValue: React.Dispatch<React.SetStateAction<number>>,
+    animationRef: React.RefObject<number | null>,
+  ) => {
     const startTime = performance.now();
-
     const animate = (currentTime: number) => {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
       const currentValue = Math.round(start + (end - start) * progress);
       setValue(currentValue);
-
       if (progress < 1) {
+        if (animationRef.current) {
+          cancelAnimationFrame(animationRef.current);
+        }
         animationRef.current = requestAnimationFrame(animate);
       }
     };
-
     if (animationRef.current) {
       cancelAnimationFrame(animationRef.current);
     }
     animationRef.current = requestAnimationFrame(animate);
   };
 
-  const handleStartAnimation = () => {
-    animateNumber(1927, targetValue, 230); // 2000 мс = 2 секунды
+  const handleStartAnimationFirst = () => {
+    if (startData !== undefined) {
+      animateNumber(
+        valueFirst,
+        newFirstValue,
+        230,
+        setValueFirst,
+        animationRefFirst,
+      );
+    }
+  };
+
+  const handleStartAnimationSecond = () => {
+    if (endData !== undefined) {
+      animateNumber(
+        valueSecond,
+        newSecondValue,
+        230,
+        setValueSecond,
+        animationRefSecond,
+      );
+    }
   };
 
   useEffect(() => {
-    handleStartAnimation();
-  }, [activeDot]);
+    handleStartAnimationFirst();
+  }, [startData]);
+
+  useEffect(() => {
+    handleStartAnimationSecond();
+  }, [endData]);
+
   return (
     <div className={styles.historyBlockDataContent}>
       <h3
@@ -47,7 +87,7 @@ export const DataTitle: React.FC<DataTitleI> = (props) => {
           styles.historyBlockDataContentTitleLeft,
         )}
       >
-        {value}
+        {valueFirst}
       </h3>
       <h3
         className={cn(
@@ -55,7 +95,7 @@ export const DataTitle: React.FC<DataTitleI> = (props) => {
           styles.historyBlockDataContentTitleRight,
         )}
       >
-        2022
+        {valueSecond}
       </h3>
     </div>
   );

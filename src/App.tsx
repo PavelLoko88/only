@@ -1,4 +1,5 @@
 import "./App.scss";
+import { HistoryContent } from "./components/HistoryContent/HistoryContent";
 import { HistoryData } from "./components/HistoryData/HistoryData";
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <div className="page">
       <div className="container">
         <HistoryData />
+        <HistoryContent />
       </div>
     </div>
   );

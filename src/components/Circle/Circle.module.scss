@@ -1,0 +1,44 @@
+.circle {
+  position: absolute;
+  z-index: 3;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  box-sizing: border-box;
+  transition: transform 230ms ease-in-out;
+
+  @media (max-width: 670px) {
+    display: none;
+  }
+
+  &Dot {
+    position: absolute;
+    border-radius: 50%;
+    background-color: var(--dark-blue);
+    cursor: pointer;
+    transition: background-color 230ms ease-in-out, transform 230ms ease-in-out,
+      width 230ms ease-in-out, height 230ms ease-in-out, border 230ms ease-in-out;
+    border: 1px solid var(--dark-blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    &:hover {
+      background-color: #F4F5F9;
+      border: 1px solid rgba(66, 86, 122, 0.5);
+    }
+
+    &Active {
+      background-color: #F4F5F9;
+      border: 1px solid rgba(66, 86, 122, 0.5);
+      width: 56px !important;
+      height: 56px !important;
+    }
+
+    &Text {
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--dark-blue);
+    }
+  }
+}

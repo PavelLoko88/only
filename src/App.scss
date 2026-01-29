@@ -1,5 +1,4 @@
 .page {
-
   width: 100%;
   display: flex;
   justify-content: center;
@@ -9,8 +8,11 @@
 .container {
   max-width: 1440px;
   width: 100%;
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
 
   @media (max-width: 670px) {
     padding: 0px 20px;
+    border: none;
   }
 }
