@@ -1,0 +1,28 @@
+@import "../../functions";
+
+.historyContent {
+  position: relative;
+  margin-top: scale(96);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: scale(120);
+
+  @media (max-width: 670px) {
+    margin-top: scale(56);
+    align-items: flex-start;
+  }
+
+  &Line {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: scale(1);
+    background-color: var(--border-color);
+
+    @media (max-width: 670px) {
+      margin-top: scale(130);
+    }
+  }
+}

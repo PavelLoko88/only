@@ -1,15 +1,33 @@
-.page{
-  height: 100px;
-  width: 100%;
-  // background-color: red;
+@import "./functions";
 
+.page {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.container{
-width: 1440px;
-height: 100px;
-// background-color: green;
+.line {
+  position: absolute;
+  width: scale(1);
+  height: 100%;
+  background-color: var(--border-color);
+  left: 50%;
+
+  @media (max-width: 670px) {
+    display: none;
+  }
+}
+
+.container {
+  position: relative;
+  max-width: scale(1440);
+  width: 100%;
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+
+  @media (max-width: 670px) {
+    padding: 0px scale(20);
+    border: none;
+  }
 }

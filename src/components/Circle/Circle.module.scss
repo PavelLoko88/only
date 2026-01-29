@@ -1,0 +1,47 @@
+@import "../../functions";
+
+.circle {
+  position: absolute;
+  z-index: 3;
+  border-radius: 50%;
+  border: scale(1) solid var(--border-color);
+  box-sizing: border-box;
+  transition: transform 230ms ease-in-out;
+
+  @media (max-width: 670px) {
+    display: none;
+  }
+
+  &Dot {
+    position: absolute;
+    border-radius: 50%;
+    background-color: var(--dark-blue);
+    cursor: pointer;
+    transition: background-color 230ms ease-in-out, transform 230ms ease-in-out,
+      width 230ms ease-in-out, height 230ms ease-in-out, border 230ms ease-in-out;
+    border: scale(1) solid var(--dark-blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    &:hover {
+      background-color: #F4F5F9;
+      border: scale(1) solid rgba(66, 86, 122, 0.5);
+    }
+
+    &Active {
+      background-color: #F4F5F9;
+      border: scale(1) solid rgba(66, 86, 122, 0.5);
+      width: scale(56) !important;
+      height: scale(56) !important;
+    }
+
+    &Text {
+      cursor: pointer;
+      font-size: scale(20);
+      font-weight: 400;
+      color: var(--dark-blue);
+    }
+  }
+}

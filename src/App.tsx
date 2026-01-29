@@ -1,16 +1,15 @@
-import './App.scss';
-import { HistoryData } from './components/HistoryData/HistoryData';
+import "./App.scss";
+import { HistoryContent } from "./components/HistoryContent/HistoryContent";
+import { HistoryData } from "./components/HistoryData/HistoryData";
 
 function App() {
   return (
     <div className="page">
-
-<div className='container'>
-
-<HistoryData/>
-
-</div>
-
+      <div className="container">
+        <div className="line"></div>
+        <HistoryData />
+        <HistoryContent />
+      </div>
     </div>
   );
 }

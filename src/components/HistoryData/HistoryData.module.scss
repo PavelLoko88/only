@@ -1,1 +1,37 @@
-.historyBlock{}
+@import "../../_functions";
+
+.historyHeader {
+  display: flex;
+  align-items: center;
+  gap: scale(78);
+  margin-left: scale(-1);
+  position: relative;
+  padding-top: scale(170);
+
+  @media (max-width: 670px) {
+    gap: 0;
+    margin-left: 0;
+    padding-top: scale(59);
+  }
+
+  &Color {
+    width: scale(5);
+    height: scale(120);
+    background: linear-gradient(to bottom, #3877EE 0%, #EF5DA8 100%);
+
+    @media (max-width: 670px) {
+      display: none;
+    }
+  }
+
+  &Title {
+    font-size: scale(56);
+    font-weight: bold;
+    color: var(--dark-blue);
+    line-height: 1.2;
+
+    @media (max-width: 670px) {
+      font-size: scale(20);
+    }
+  }
+}

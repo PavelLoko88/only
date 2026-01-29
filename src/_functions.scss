@@ -1,0 +1,13 @@
+:root {
+  --screen-width: 1920; // по умолчанию для десктопа
+}
+
+@media (max-width: 670px) {
+  :root {
+    --screen-width: 320;
+  }
+}
+
+@function scale($px) {
+  @return calc(#{$px}/var(--screen-width)*100vw);
+}

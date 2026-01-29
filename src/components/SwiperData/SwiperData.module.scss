@@ -1,0 +1,110 @@
+@import "../../functions";
+
+.swiper {
+  position: relative;
+  width: 100%;
+  padding: 0 scale(80);
+  margin-top: scale(56);
+  padding-bottom: scale(104);
+  display: flex;
+  align-items: center;
+  transition: opacity 0.3s, transform 0.3s;
+  opacity: 1;
+  transform: translateY(0);
+
+  @media (max-width: 670px) {
+    padding: 0;
+    margin-top: scale(78);
+    padding-bottom: scale(32);
+  }
+
+  &Button {
+    cursor: pointer;
+    width: scale(40);
+    height: scale(40);
+    background-color: #FFFFFF;
+    box-shadow: 0 0 scale(15) 0 rgba(56, 119, 238, 0.1);
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &Left {
+      transform: rotate(180deg);
+      position: absolute;
+      z-index: 10;
+      left: scale(20);
+    }
+
+    &Right {
+      position: absolute;
+      z-index: 10;
+      right: scale(20);
+    }
+
+    &Opacity {
+      transition: opacity 230ms ease-in-out;
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  &Card {
+    width: scale(320);
+    min-height: scale(135);
+    height: auto;
+
+    @media (max-width: 670px) {
+      width: auto;
+      max-width: scale(250);
+      min-height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      height: scale(116);
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    &Title {
+      font-family: "Bebas Neue", sans-serif;
+      color: #3877EE;
+      font-size: scale(25);
+      font-weight: 400;
+      line-height: 1.2;
+      cursor: grab;
+
+      @media (max-width: 670px) {
+        font-size: scale(16);
+      }
+    }
+
+    &Text {
+      margin-top: scale(15);
+      color: var(--dark-blue);
+      font-size: scale(20);
+      line-height: 1.5;
+      cursor: grab;
+
+      @media (max-width: 670px) {
+        margin: 0;
+        word-wrap: break-word;
+        white-space: normal;
+        font-size: scale(14);
+        line-height: 1.45;
+      }
+    }
+  }
+}
+
+.fadeOut {
+  opacity: 0;
+  transform: translateY(scale(20));
+}
+
+.fadeIn {
+  opacity: 1;
+  transform: translateY(0);
+}
