@@ -1,20 +1,22 @@
+@import "../../_functions";
+
 .historyHeader {
   display: flex;
   align-items: center;
-  gap: 78px;
-  margin-left: -1px;
+  gap: scale(78);
+  margin-left: scale(-1);
   position: relative;
-  padding-top: 170px;
+  padding-top: scale(170);
 
   @media (max-width: 670px) {
     gap: 0;
     margin-left: 0;
-    padding-top: 59px;
+    padding-top: scale(59);
   }
 
   &Color {
-    width: 5px;
-    height: 120px;
+    width: scale(5);
+    height: scale(120);
     background: linear-gradient(to bottom, #3877EE 0%, #EF5DA8 100%);
 
     @media (max-width: 670px) {
@@ -23,14 +25,13 @@
   }
 
   &Title {
-    font-size: 56px;
+    font-size: scale(56);
     font-weight: bold;
     color: var(--dark-blue);
     line-height: 1.2;
 
     @media (max-width: 670px) {
-      font-size: 20px;
+      font-size: scale(20);
     }
   }
 }
-

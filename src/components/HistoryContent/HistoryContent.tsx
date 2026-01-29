@@ -30,14 +30,14 @@ export const HistoryContent = () => {
 
   return (
     <>
-      <div className={styles.historyBlockData}>
+      <div className={styles.historyContent}>
         <DataTitle
           activeDot={activeDot}
           startData={startData}
           endData={endData}
           text={text}
         />
-        <div className={styles.historyBlockDataLine}></div>
+        <div className={styles.historyContentLine}></div>
         <Circle
           setStartData={setStartData}
           setEndData={setEndData}

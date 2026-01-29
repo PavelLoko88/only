@@ -30,10 +30,9 @@ export const Circle: FC<CircleI> = (props) => {
 
   const rotateDefault: number = 65;
   const numberOfPoints: number = circleContent.length;
-  const radius: number = 265;
+  const [radius, setRadius] = useState(265);
   const center: number = radius;
   const size: number = radius * 2;
-  //координаты
   const points: Point[] = Array.from({ length: numberOfPoints }).map(
     (_, index) => {
       const angle = ((2 * Math.PI) / numberOfPoints) * index;
@@ -50,6 +49,26 @@ export const Circle: FC<CircleI> = (props) => {
       setText(circleContent[index].text);
     }
   };
+
+  useEffect(() => {
+    const updateRadius = () => {
+      if (window.innerWidth < 1000) {
+        setRadius(100);
+        console.log("22222");
+      } else if (window.innerWidth < 1440) {
+        setRadius(150);
+        console.log("1111");
+      } else {
+        setRadius(265);
+      }
+    };
+    updateRadius();
+
+    window.addEventListener("resize", updateRadius);
+    return () => {
+      window.removeEventListener("resize", updateRadius);
+    };
+  }, []);
 
   useEffect(() => {
     if (activeDot === 0) {

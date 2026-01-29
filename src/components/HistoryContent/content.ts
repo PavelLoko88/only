@@ -88,7 +88,6 @@ export const circleContent: Content[] = [
       },
     ],
   },
-
   {
     id: 3,
     text: "Наука",

@@ -25,13 +25,13 @@ export const CircleSlider: FC<CircleSliderI> = (props) => {
     }
   };
   return (
-    <div className={styles.circleSlider}>
-      <p className={styles.circleSliderText}>{`${activeDot + 1}/${length}`}</p>
-      <div className={styles.circleSliderButtons}>
+    <div className={styles.slider}>
+      <p className={styles.sliderText}>{`${activeDot + 1}/${length}`}</p>
+      <div className={styles.sliderButtons}>
         <button
           className={cn(
-            styles.circleSliderButton,
-            activeDot === 0 && styles.circleSliderButtonDisable,
+            styles.sliderButton,
+            activeDot === 0 && styles.sliderButtonDisable,
           )}
           onClick={backPoint}
         >
@@ -39,9 +39,9 @@ export const CircleSlider: FC<CircleSliderI> = (props) => {
         </button>
         <button
           className={cn(
-            styles.circleSliderButton,
-            styles.circleSliderButtonRight,
-            activeDot === length - 1 && styles.circleSliderButtonDisable,
+            styles.sliderButton,
+            styles.sliderButtonRight,
+            activeDot === length - 1 && styles.sliderButtonDisable,
           )}
           onClick={nextPoint}
         >

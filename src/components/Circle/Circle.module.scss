@@ -1,8 +1,10 @@
+@import "../../functions";
+
 .circle {
   position: absolute;
   z-index: 3;
   border-radius: 50%;
-  border: 1px solid var(--border-color);
+  border: scale(1) solid var(--border-color);
   box-sizing: border-box;
   transition: transform 230ms ease-in-out;
 
@@ -17,7 +19,7 @@
     cursor: pointer;
     transition: background-color 230ms ease-in-out, transform 230ms ease-in-out,
       width 230ms ease-in-out, height 230ms ease-in-out, border 230ms ease-in-out;
-    border: 1px solid var(--dark-blue);
+    border: scale(1) solid var(--dark-blue);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,18 +27,19 @@
 
     &:hover {
       background-color: #F4F5F9;
-      border: 1px solid rgba(66, 86, 122, 0.5);
+      border: scale(1) solid rgba(66, 86, 122, 0.5);
     }
 
     &Active {
       background-color: #F4F5F9;
-      border: 1px solid rgba(66, 86, 122, 0.5);
-      width: 56px !important;
-      height: 56px !important;
+      border: scale(1) solid rgba(66, 86, 122, 0.5);
+      width: scale(56) !important;
+      height: scale(56) !important;
     }
 
     &Text {
-      font-size: 20px;
+      cursor: pointer;
+      font-size: scale(20);
       font-weight: 400;
       color: var(--dark-blue);
     }

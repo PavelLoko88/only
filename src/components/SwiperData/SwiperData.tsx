@@ -6,7 +6,6 @@ import cn from "classnames";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
 import styles from "./SwiperData.module.scss";
 import ArrowSwiper from "../../assets/svg/ArrowSwiper";
 import { ContentList } from "../HistoryContent/content";
@@ -19,21 +18,10 @@ interface SwiperI {
 
 export const SwiperData: React.FC<SwiperI> = (props) => {
   const { content, activeDot, isMobile } = props;
-
   const swiperRef = useRef<any>(null);
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
   const [animateOut, setAnimateOut] = useState(false);
-
-  useEffect(() => {
-    if (content[activeDot]) {
-      setAnimateOut(true);
-      const timeout = setTimeout(() => {
-        setAnimateOut(false);
-      }, 230);
-      return () => clearTimeout(timeout);
-    }
-  }, [activeDot, content]);
 
   const handleNext = () => {
     if (swiperRef.current) {
@@ -53,6 +41,16 @@ export const SwiperData: React.FC<SwiperI> = (props) => {
       setIsEnd(swiperRef.current.isEnd);
     }
   };
+
+  useEffect(() => {
+    if (content[activeDot]) {
+      setAnimateOut(true);
+      const timeout = setTimeout(() => {
+        setAnimateOut(false);
+      }, 230);
+      return () => clearTimeout(timeout);
+    }
+  }, [activeDot, content]);
 
   return (
     <div

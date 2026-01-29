@@ -80,21 +80,11 @@ export const DataTitle: React.FC<DataTitleI> = (props) => {
   }, [endData]);
 
   return (
-    <div className={styles.historyBlockDataContent}>
-      <h3
-        className={cn(
-          styles.historyBlockDataContentTitle,
-          styles.historyBlockDataContentTitleLeft,
-        )}
-      >
+    <div className={styles.historyData}>
+      <h3 className={cn(styles.historyDataTitle, styles.historyDataTitleLeft)}>
         {valueFirst}
       </h3>
-      <h3
-        className={cn(
-          styles.historyBlockDataContentTitle,
-          styles.historyBlockDataContentTitleRight,
-        )}
-      >
+      <h3 className={cn(styles.historyDataTitle, styles.historyDataTitleRight)}>
         {valueSecond}
       </h3>
     </div>

@@ -6,6 +6,7 @@ function App() {
   return (
     <div className="page">
       <div className="container">
+        <div className="line"></div>
         <HistoryData />
         <HistoryContent />
       </div>
